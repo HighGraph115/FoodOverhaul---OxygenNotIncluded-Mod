@@ -270,7 +270,7 @@ namespace FoodOverhaul
 
                     public static LocString DESC = string.Concat("Determines a Duplicant's Runspeed.");
 
-                    public static LocString SPEEDMODIFIER = "{25}% Runspeed";
+                    public static LocString SPEEDMODIFIER = "{20}% Runspeed";
                 }
                 public class MOVEMENTINCREASE_2
                 {
@@ -278,7 +278,7 @@ namespace FoodOverhaul
 
                     public static LocString DESC = string.Concat("Determines a Duplicant's Runspeed.");
 
-                    public static LocString SPEEDMODIFIER = "{50}% Runspeed";
+                    public static LocString SPEEDMODIFIER = "{40}% Runspeed";
                 }
             }
             public class TRAITS

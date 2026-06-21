@@ -97,7 +97,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_Athletic_Diet";
             public const float Runspd_increase = 1.20f;
             public const float Duration = 600f;
-            public const string description = "Increased total Speed: {20}% Runspeed";
+            public const string description = "Increased total Speed: 20% Runspeed";
             public static readonly List<string> food = new List<string> { "RawEgg", "Tofu", "SmokedDinosaurMeat", "PlantMeat", "Nigiri" };
 
             public Athletic_Diet() : base(
@@ -135,7 +135,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_ATHLETIC_DIET2";
             public const float Runspd_increase = 1.4f;
             public const float Duration = 600f;
-            public const string description = "Increased total Speed: {40}% Runspeed";
+            public const string description = "Increased total Speed: 40% Runspeed";
             public static readonly List<string> food = new List<string> { "SpicyTofu", "Curry", "SurfAndTurf", "DeepFriedShellfish" };
 
             public Athletic_Diet2() : base(

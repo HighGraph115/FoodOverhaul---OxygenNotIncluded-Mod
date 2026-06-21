@@ -19,7 +19,6 @@ namespace FoodOverhaul
         [HarmonyPatch("Initialize")]
         public class Db_Initialize_Patch
         {
-            private static bool patched = false;
             public static void Prefix()
             {
 
@@ -32,16 +31,6 @@ namespace FoodOverhaul
                 {
                     // Initializes Favorite Food Traits
                     FavoriteFoodConfig.FavoriteFoodTraitCreator.TraitCreator();
-                    Debug.Log("[FoodOverhaul] Favorite food traits created (or attempted)");
-
-                    if (patched)
-                    {
-                        return;
-                    }
-                    
-                    patched = true;
-
-                    new Harmony("FoodOverhaul").PatchAll();
 
                     new FEffects();
 

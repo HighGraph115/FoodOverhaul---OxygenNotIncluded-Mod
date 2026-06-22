@@ -7,6 +7,7 @@ using STRINGS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -143,15 +144,33 @@ namespace FoodOverhaul
                 // Creates Traits for every id listed in favoriteTrait
                 foreach (TraitVal food in favoriteTrait)
                 {
+
                     bool isactive = DlcManager.IsCorrectDlcSubscribed(food);
 
-                    //Exclude traits that don't fit active Dlc's
-                    if (isactive)
+                    bool allowed = true;
+
+                    //Exclude traits that don't fit active and subscribed Dlc's
+                    if (!isactive)
                     {
-                        continue;
+                        try
+                        {
+                            allowed = food.requiredDlcIds.Any(id => Game.IsDlcActiveForCurrentSave(id));
+                        }
+                        catch
+                        {
+                            allowed = false;
+                        }
                     }
 
+                    if (!allowed)
+                        continue;
+
                     string traitid = "FF_" + food.id;
+
+                    //Catch Duplicate creation of Traits, due to Traitcreation per Save Load
+                    if (Db.Get().traits.TryGet(traitid) != null)
+                        continue;
+
                     string name = STRINGS.DUPLICANTS.TRAITS.FAVORITEFOOD.FF_.NAME;
                     string desc = STRINGS.DUPLICANTS.TRAITS.FAVORITEFOOD.FF_.DESC;
                     string locstringName = $"STRINGS.DUPLICANTS.TRAITS.FAVORITEFOOD.FF_{food.id}.NAME";
@@ -190,20 +209,39 @@ namespace FoodOverhaul
 
                 foreach (var food in favoriteTrait)
                 {
-                    if (Game.IsCorrectDlcActiveForCurrentSave(food) || food.requiredDlcIds == null)
+
+                    if (food.requiredDlcIds == null)
                     {
                         foodsactive.Add(food.id);
                         continue;
                     }
-                    
-                    //Fallback in case of problems, List without Dlc items
-                    if (foodsactive.Count == 0)
-                        foods = new List<string>
+
+                    bool anyActive = false;
+                    foreach (var dlc in food.requiredDlcIds)
+                    {
+                        if (string.IsNullOrEmpty(dlc) || Game.IsDlcActiveForCurrentSave(dlc))
+                        {
+                            anyActive = true;
+                            break;
+                        }
+                    }
+
+                    if (anyActive)
+                        foodsactive.Add(food.id);
+                }
+
+                //Fallback in case of problems, List without Dlc items
+                if (foodsactive.Count == 0)
+                {
+                    foods = new List<string>
                         {
                         "SpicyTofu", "Curry", "Burger", "Quiche", "SpiceBread", "Pancakes"
                         };
                 }
-                foods = new List<string>(foodsactive);
+                else
+                {
+                    foods = new List<string>(foodsactive);
+                }
             }
 
             public class FavoriteFoodAssigned : KMonoBehaviour
@@ -342,13 +380,41 @@ namespace FoodOverhaul
         }
 
         //Patch the available Food list whenever a save file is loaded
-        [HarmonyPatch(typeof(SaveLoader), "Load")]
+        [HarmonyPatch]
         public static class SaveLoader_Load_FavoriteFoodPatch
         {
+            //Simply Patching "Load" causes Ambiguity error, manually getting the proper method
+            //TargetMethod gets called, when Harmony doesnt find a method to patch
+            static MethodBase TargetMethod()
+            {
+                var allbinding = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance;
+                //Skim for Load methods
+                var method = typeof(SaveLoader).GetMethods(allbinding).Where(x => x.Name == "Load").ToArray();
+
+                //Makes sure to filter for exactly Load(string)
+                var stringsearch = method.FirstOrDefault(x =>
+                {
+                    var parameter = x.GetParameters();
+                    return parameter.Length == 1 && parameter[0].ParameterType == typeof(string);
+                });
+                if (stringsearch != null)
+                    return stringsearch;
+
+                //Fallback 1: Go for Load() instead. This shouldn't happen unless SaveLoader gets deprecated
+                var noparameter = method.FirstOrDefault(m => m.GetParameters().Length == 0);
+                if (noparameter != null)
+                    return noparameter;
+
+                //Fallback 2: This really shouldn't happen, but just in case grab FirstorDefault
+                return method.FirstOrDefault();
+            }
             public static void Postfix()
             {
                 try
                 {
+                    //Create Traits that may be missing due to new Dlc
+                    FavoriteFoodTraitCreator.TraitCreator();
+
                     // Create new List whenever any new SaveFile is loaded
                     FavoriteFoodConfig.FavoriteFood.UpdateFoodlistForCurrentSave();
                     Debug.Log("[FoodOverhaul] Updated favorite foods for current save.");

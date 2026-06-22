@@ -70,6 +70,7 @@
     <Compile Include="Effects\Reach.cs" />
     <Compile Include="Configs\FavoriteFoodConfig.cs" />
     <Compile Include="FoodEffects.cs" />
+    <Compile Include="Patches\FoodOverhaulPatch.cs" />
     <Compile Include="Localisation\EffectStringRegistrator.cs" />
     <Compile Include="Localisation\LocPatch.cs" />
     <Compile Include="Patches\FavoriteFoodTraitUIpatch.cs" />

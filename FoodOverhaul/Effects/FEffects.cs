@@ -49,7 +49,7 @@ namespace FoodOverhaul.Effects
             new TheBigOne();
         }
         /*
-         * Blueprint
+         * Blueprint: Basic Structure for creating any effect for any food Item and apply basic changes to attributes
          * 
         public class Effect_Sample : FoodEffects
         {

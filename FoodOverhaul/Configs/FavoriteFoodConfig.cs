@@ -38,7 +38,8 @@ namespace FoodOverhaul
                 },
                 new TraitVal
                 {
-                id = "BerryPie"
+                id = "BerryPie",
+                requiredDlcIds = DlcManager.EXPANSION1
                 },
                 new TraitVal
                 {
@@ -54,15 +55,18 @@ namespace FoodOverhaul
                 },
                 new TraitVal
                 {
-                id = "FriesCarrot"
+                id = "FriesCarrot",
+                requiredDlcIds = DlcManager.DLC2
                 },
                 new TraitVal
                 {
-                id = "DeepFriedShellfish"
+                id = "DeepFriedShellfish",
+                requiredDlcIds = DlcManager.DLC2
                 },
                 new TraitVal
                 {
-                id = "UrchinMeat"
+                id = "UrchinMeat",
+                requiredDlcIds = DlcManager.DLC5
                 }
             };
         public class FavoriteFoodEffect
@@ -139,6 +143,14 @@ namespace FoodOverhaul
                 // Creates Traits for every id listed in favoriteTrait
                 foreach (TraitVal food in favoriteTrait)
                 {
+                    bool isactive = DlcManager.IsCorrectDlcSubscribed(food);
+
+                    //Exclude traits that don't fit active Dlc's
+                    if (isactive)
+                    {
+                        continue;
+                    }
+
                     string traitid = "FF_" + food.id;
                     string name = STRINGS.DUPLICANTS.TRAITS.FAVORITEFOOD.FF_.NAME;
                     string desc = STRINGS.DUPLICANTS.TRAITS.FAVORITEFOOD.FF_.DESC;
@@ -165,10 +177,34 @@ namespace FoodOverhaul
         public class FavoriteFood
         {
             private static readonly System.Random fixedrandom = new System.Random();
-            public static readonly List<string> foods = new List<string>
+            public static List<string> foods = new List<string>
             {
                 "SpicyTofu", "Curry", "Burger", "BerryPie", "Quiche", "SpiceBread", "Pancakes", "FriesCarrot", "DeepFriedShellfish", "UrchinMeat"
             };
+
+            private static readonly List<string> foodsactive = new List<string>();
+
+            public static void UpdateFoodlistForCurrentSave()
+            {
+                foodsactive.Clear();
+
+                foreach (var food in favoriteTrait)
+                {
+                    if (Game.IsCorrectDlcActiveForCurrentSave(food) || food.requiredDlcIds == null)
+                    {
+                        foodsactive.Add(food.id);
+                        continue;
+                    }
+                    
+                    //Fallback in case of problems, List without Dlc items
+                    if (foodsactive.Count == 0)
+                        foods = new List<string>
+                        {
+                        "SpicyTofu", "Curry", "Burger", "Quiche", "SpiceBread", "Pancakes"
+                        };
+                }
+                foods = new List<string>(foodsactive);
+            }
 
             public class FavoriteFoodAssigned : KMonoBehaviour
             {
@@ -212,7 +248,7 @@ namespace FoodOverhaul
                 }
             }
 
-            //Patch to make sure the FFTraitAssigned check exists on save/load, before the OnSpawn patch
+            //Patch to make sure the FFTraitAssigned check exists on save/load
             [HarmonyPatch(typeof(MinionConfig), "CreatePrefab")]
             public static class MinionConfig_CreatePrefab_Patch
             {
@@ -259,7 +295,7 @@ namespace FoodOverhaul
                         string eatenFoodId = ConsumtionTracker_Patch.currentFoodId; //Gets any currently eaten food
                         Traits traits = __instance.GetComponent<Traits>();
 
-                        // if the food doesn't match the trait or neither are present
+                        // If the food doesn't match the trait or neither are present
                         if (eatenFoodId == null || traits == null || !traits.HasTrait("FF_" + eatenFoodId))
                             return false;
 
@@ -271,7 +307,7 @@ namespace FoodOverhaul
         }
         public class FavoriteFoodTraitPatch
         {
-            //Get Set for receiving Duplicant stats, adding them to the MinionStartingStats to generate Traits like Stress and Joy response
+            //Get/Set for receiving Duplicant stats, adding them to the MinionStartingStats to generate Traits like Stress and Joy response
             private static readonly ConditionalWeakTable<MinionStartingStats, string> tempstats = new ConditionalWeakTable<MinionStartingStats, string>();
 
             public static void Set(MinionStartingStats stats, string foodid)
@@ -302,6 +338,25 @@ namespace FoodOverhaul
 
                 string fav = FavoriteFood.FavoriteFoodSelecter(null);
                 FavoriteFoodTraitPatch.Set(__instance, fav);
+            }
+        }
+
+        //Patch the available Food list whenever a save file is loaded
+        [HarmonyPatch(typeof(SaveLoader), "Load")]
+        public static class SaveLoader_Load_FavoriteFoodPatch
+        {
+            public static void Postfix()
+            {
+                try
+                {
+                    // Create new List whenever any new SaveFile is loaded
+                    FavoriteFoodConfig.FavoriteFood.UpdateFoodlistForCurrentSave();
+                    Debug.Log("[FoodOverhaul] Updated favorite foods for current save.");
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogWarning("[FoodOverhaul] Failed to update foods, fallback to Vanilla mode: " + e.Message);
+                }
             }
         }
     }

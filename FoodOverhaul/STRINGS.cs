@@ -342,9 +342,9 @@ namespace FoodOverhaul
                     }
                     public class FF_DeepFriedShellfish
                     {
-                        public static LocString NAME = "Favorite Food: ShellfishTaco";
+                        public static LocString NAME = "Favorite Food: Shellfish Tempura";
 
-                        public static LocString DESC = "This Duplicants loves eating " + UI.PRE_KEYWORD + "ShellfishTaco" + UI.PST_KEYWORD;
+                        public static LocString DESC = "This Duplicants loves eating " + UI.PRE_KEYWORD + "Shellfish Tempura" + UI.PST_KEYWORD;
                     }
                     public class FF_UrchinMeat
                     {

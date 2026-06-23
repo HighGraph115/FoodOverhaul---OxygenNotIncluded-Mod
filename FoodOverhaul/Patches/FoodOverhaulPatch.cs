@@ -14,5 +14,11 @@ namespace FoodOverhaul
         {
             base.OnLoad(harmony);
         }
+
+        public override void OnAllModsLoaded(Harmony harmony, IReadOnlyList<KMod.Mod> mods)
+        {
+            base.OnAllModsLoaded(harmony, mods);
+            Compatibility.ModCheck.CheckForMods(mods);
+        }
     }
 }

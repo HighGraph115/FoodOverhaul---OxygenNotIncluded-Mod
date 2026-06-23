@@ -32,11 +32,11 @@ namespace FoodOverhaul
                     // Initializes Favorite Food Traits
                     FavoriteFoodConfig.FavoriteFoodTraitCreator.TraitCreator();
 
+                    //Create all FEffects that get Initialized
                     new FEffects();
 
                     Debug.Log("[FoodOverhaul] SetFoodEffects completed");
                     //Reach.ReachPatch.ExpandTables(3, 3);
-                    //Debug.Log("[FoodOverhaul] Reach.ExpandTables called");
 
                 }
                 catch (Exception e)

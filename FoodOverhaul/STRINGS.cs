@@ -17,7 +17,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Athletic Food";
 
-                    public static LocString TOOLTIP = "This Duplicant understands how this food is so resilient!";
+                    public static LocString TOOLTIP = "Increased total Speed: 20% Runspeed";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -27,7 +27,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "ATHLETIC FOOD!";
 
-                    public static LocString TOOLTIP = "This Duplicant understands how this food is so resilient!";
+                    public static LocString TOOLTIP = "Increased total Speed: 40% Runspeed";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -37,7 +37,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Relaxing Taste";
 
-                    public static LocString TOOLTIP = "This Duplicant feels a little more comfortable";
+                    public static LocString TOOLTIP = "This Duplicant feels at ease";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -47,7 +47,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Aquatic Taste";
 
-                    public static LocString TOOLTIP = "This Duplicant is ready for a swim";
+                    public static LocString TOOLTIP = "This Duplicant feels like a fish";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -57,7 +57,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Personal Favorite!";
 
-                    public static LocString TOOLTIP = "This Duplicant feels motivated";
+                    public static LocString TOOLTIP = "This Duplicants favorite Snack!";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -87,7 +87,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Max Brainpower";
 
-                    public static LocString TOOLTIP = "This Duplicant brain just works better and everyone should know!";
+                    public static LocString TOOLTIP = "This Duplicant mind is expanding";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -97,7 +97,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Special Taste";
 
-                    public static LocString TOOLTIP = "This Duplicant understands how this food is so resilient!";
+                    public static LocString TOOLTIP = "Reduces CO2 Emission to 0!";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -107,7 +107,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Astronaut Food";
 
-                    public static LocString TOOLTIP = "This Duplicant feels closer to the stars";
+                    public static LocString TOOLTIP = "Perfect food for intergalactic travel";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -117,7 +117,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Healthy Taste";
 
-                    public static LocString TOOLTIP = "This Duplicant values their Genetic Ooze";
+                    public static LocString TOOLTIP = "This Duplicant wants to stay away from the Sick Bay";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -127,7 +127,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Aestheticly pleasing";
 
-                    public static LocString TOOLTIP = "This Duplicant wants to express themself";
+                    public static LocString TOOLTIP = "Sometimes it is not just about the Taste";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -147,7 +147,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Tough Taste";
 
-                    public static LocString TOOLTIP = "This Duplicant has a knack for building something new";
+                    public static LocString TOOLTIP = "This Duplicant appreciates a robust diet";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -157,7 +157,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Sweets";
 
-                    public static LocString TOOLTIP = "This Duplicant just can't get enough of this taste";
+                    public static LocString TOOLTIP = "The Sweet taste makes this Duplicant jumpy";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -167,7 +167,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Natural Taste";
 
-                    public static LocString TOOLTIP = "This Duplicant feels like visiting a Nature Reserve";
+                    public static LocString TOOLTIP = "This Duplicant is in touch with Nature!";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -207,7 +207,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Oily";
 
-                    public static LocString TOOLTIP = "This Duplicant feels like a well-oiled machine";
+                    public static LocString TOOLTIP = "The oily Taste of Industry";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -217,7 +217,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Bad Taste";
 
-                    public static LocString TOOLTIP = "This Duplicant is willing to change the menu";
+                    public static LocString TOOLTIP = "This Duplicant wants to eat something else";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -227,7 +227,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Inspired";
 
-                    public static LocString TOOLTIP = "This Duplicant can change everything";
+                    public static LocString TOOLTIP = "This Duplicant wants to reshape the whole Planetoid";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -237,7 +237,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "Stimulated";
 
-                    public static LocString TOOLTIP = "This Duplicant is moving rhythmically";
+                    public static LocString TOOLTIP = "This Duplicant is giving it their all";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 
@@ -247,7 +247,7 @@ namespace FoodOverhaul
                 {
                     public static LocString NAME = "True Delicacy";
 
-                    public static LocString TOOLTIP = "This Duplicant swears that THIS ONE was the best Burger ever";
+                    public static LocString TOOLTIP = "NUTRITIONAL OVERDRIVE";
 
                     public static LocString CAUSE = "Obtained by eating special food home to asteroids";
 

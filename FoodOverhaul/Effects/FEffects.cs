@@ -21,6 +21,9 @@ namespace FoodOverhaul.Effects
 {
     public class FEffects
     {
+        static readonly Database.Attributes attributes = Db.Get().Attributes;
+
+        static readonly ResourceSet<Effect> effectDb = Db.Get().effects;
         public FEffects() 
         {
             new Athletic_Diet();
@@ -56,7 +59,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_Effect_Sample";
             public const float x = 2f;
             public const float Duration = 600f;
-            public const string description = "";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_EffectIdHere.TOOLTIP;
             public static readonly List<string> food = new List<string> { "FieldRation" };
 
             public Effect_Sample() : base(
@@ -67,10 +70,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
                 
@@ -97,7 +96,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_Athletic_Diet";
             public const float Runspd_increase = 1.20f;
             public const float Duration = 600f;
-            public const string description = "Increased total Speed: 20% Runspeed";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_ATHLETIC_DIET.TOOLTIP;
             public static readonly List<string> food = new List<string> { "RawEgg", "Tofu", "SmokedDinosaurMeat", "PlantMeat", "Nigiri" };
 
             public Athletic_Diet() : base(
@@ -109,24 +108,18 @@ namespace FoodOverhaul.Effects
             {
                 List<string> effects = new List<string> { ID };
 
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
-
                 var effect = effectDb.TryGet(ID);
 
                 if (effect == null)
                 {
                     effect = new Effect(ID, "Athletic Diet", description, Duration, true, true, false);
                     effectDb.Add(effect);
-                }
+                } 
 
                 if (effect.SelfModifiers == null)
                 {
                     effect.SelfModifiers = new List<AttributeModifier>();
                 }
-                    // Add a modifier 
-                //effect.SelfModifiers.Add(new AttributeModifier("MOVEMENTINCREASE_1", Runspd_increase, "Athletic Diet"));
                 SetFoodEffects(food, effects);
             }
         }
@@ -135,7 +128,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_ATHLETIC_DIET2";
             public const float Runspd_increase = 1.4f;
             public const float Duration = 600f;
-            public const string description = "Increased total Speed: 40% Runspeed";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_ATHLETIC_DIET2.TOOLTIP;
             public static readonly List<string> food = new List<string> { "SpicyTofu", "Curry", "SurfAndTurf", "DeepFriedShellfish" };
 
             public Athletic_Diet2() : base(
@@ -146,10 +139,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -163,8 +152,6 @@ namespace FoodOverhaul.Effects
                 {
                     effect.SelfModifiers = new List<AttributeModifier>();
                 }
-                // Add a modifier
-                //effect.SelfModifiers.Add(new AttributeModifier("MOVEMENTINCREASE_2", Runspd_increase, "ATHLETIC DIET!", false, false, true ));
                 SetFoodEffects(food, effects);
             }
            
@@ -174,7 +161,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_CALMING";
             public const float x = 5f;
             public const float Duration = 600f;
-            public const string description = "This Duplicant feels at ease";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_CALMING.TOOLTIP;
             public static readonly List<string> food = new List<string> { "Edamame" };
 
             public Calming() : base(
@@ -185,10 +172,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -214,7 +197,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_Aquatic";
             public const float x = 50f;
             public const float Duration = 600f;
-            public const string description = "This Duplicant feels like a fish";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_AQUATIC.TOOLTIP;
             public static readonly List<string> food = new List<string> { "Nigiri", "Maki", "UrchinMeat" };
 
             public Aquatic() : base(
@@ -225,10 +208,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -255,7 +234,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_FAVORITE";
             public const float x = 3f;
             public const float Duration = 600f;
-            public const string description = "This Duplicants favorite Snack!";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_FAVORITE.TOOLTIP;
             public static readonly List<string> food = new List<string>
             {
                 "SpicyTofu", "Curry", "Burger", "BerryPie", "Quiche", "SpiceBread", "Pancakes", "FriesCarrot", "DeepFriedShellfish", "UrchinMeat"
@@ -298,7 +277,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_NOSTALGIC";
             public const float home = 3f;
             public const float Duration = 600f;
-            public const string description = "It is unclear why, but something about it reminds Duplicants of home";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_NOSTALGIC.TOOLTIP;
             public static readonly List<string> food = new List<string> { "CookedEgg", "Pancakes", "CookedPikeapple" };
 
             public Nostalgic() : base(
@@ -309,10 +288,6 @@ namespace FoodOverhaul.Effects
                     food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -338,7 +313,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_NOCO2"; 
             public const float CO2 = 0f; 
             public const float Duration = 600f;
-            public const string description = "Reduces CO2 Emission to 0!";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_NOCO2.TOOLTIP;
             public static readonly List<string> food = new List<string> { "FieldRation", "BasicForagePlant", "ForestForagePlant", "SwampForagePlant", "IceCavesForagePlant", "GardenForagePlant", "MusselTongue" };
 
             public NoCO2() : base(
@@ -349,10 +324,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -379,7 +350,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_SPACE";
             public const float x = 2f;
             public const float Duration = 600f;
-            public const string description = "Perfect food for intergalactic travel";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_SPACE.TOOLTIP;
             public static readonly List<string> food = new List<string> { "Pemmican", "FruitCake" };
 
             public Space() : base(
@@ -390,10 +361,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -419,7 +386,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_HEALTHY";
             public const float x = 2f;
             public const float Duration = 600f;
-            public const string description = "This Duplicant wants to stay away from the Sick Bay";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_HEALTHY.TOOLTIP;
             public static readonly List<string> food = new List<string> { "GrilledPrickleFruit", "PlantMeat", "Edamame", "Maki" };
 
             public Healthy() : base(
@@ -430,10 +397,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -460,7 +423,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_AESTHETIC";
             public const float x = 3f;
             public const float Duration = 600f;
-            public const string description = "Sometimes it is not just about the Taste";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_AESTHETIC.TOOLTIP;
             public static readonly List<string> food = new List<string> { "ColdWheatBread", "SpiceBread" };
 
             public Aesthetic() : base(
@@ -471,10 +434,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -500,7 +459,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_DIRTY";
             public const float x = 2f;
             public const float Duration = 600f;
-            public const string description = "This Duplicant is sure that their food was still moving!";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_DIRTY.TOOLTIP;
             public static readonly List<string> food = new List<string> { "BasicPlantBar", "PickledMeal" };
 
             public Earth() : base(
@@ -511,10 +470,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -540,7 +495,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_CONSTRUCTIVE";
             public const float x = 2f;
             public const float Duration = 600f;
-            public const string description = "This Duplicant appreciates their food tough and robust";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_CONSTRUCTIVE.TOOLTIP;
             public static readonly List<string> food = new List<string> { "WormBasicFood" };
 
             public Constructive() : base(
@@ -551,10 +506,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -580,7 +531,7 @@ namespace FoodOverhaul.Effects
                 public const string ID = "FE_SWEET";
                 public const float x = 2f;
                 public const float Duration = 600f;
-                public const string description = "The Sweet taste makes this Duplicant jumpy";
+                public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_SWEET.TOOLTIP;
                 public static readonly List<string> food = new List<string> { "WormSuperFruit", "WormSuperFood", "BerryPie", "Pancakes", "SwampDelights", "Nigiri" };
 
                 public Sweet() : base(
@@ -591,10 +542,6 @@ namespace FoodOverhaul.Effects
                     food)
                 {
                     List<string> effects = new List<string> { ID };
-
-                    var attributes = Db.Get().Attributes;
-
-                    var effectDb = Db.Get().effects;
 
                     var effect = effectDb.TryGet(ID);
 
@@ -620,7 +567,7 @@ namespace FoodOverhaul.Effects
                 public const string ID = "FE_FARMER_FOOD";
                 public const float x = 2;
                 public const float Duration = 600f;
-                public const string description = "This Duplicant is in touch with Nature!";
+                public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_FARMER_FOOD.TOOLTIP;
                 public static readonly List<string> food = new List<string> { "FriedMushroom", "Lettuce", "ColdWheatBread", "SmokedVegetables" };
 
                 public Farmer_Food() : base(
@@ -631,10 +578,6 @@ namespace FoodOverhaul.Effects
                     food)
                 {
                     List<string> effects = new List<string> { ID };
-
-                    var attributes = Db.Get().Attributes;
-
-                    var effectDb = Db.Get().effects;
 
                     var effect = effectDb.TryGet(ID);
 
@@ -661,7 +604,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_FARMERSDELIGHT";
             public const float x = 5;
             public const float Duration = 600f;
-            public const string description = "This Duplicant is in touch with Nature!";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_FARMERSDELIGHT.TOOLTIP;
             public static readonly List<string> food = new List<string> { "MushroomWrap", "Quiche" };
 
             public FarmersDelight() : base(
@@ -672,10 +615,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -702,7 +641,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_REMINISCING";
             public const float x = 2f;
             public const float Duration = 600f;
-            public const string description = "Increases Science by 2";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_REMINISCING.TOOLTIP;
             public static readonly List<string> food = new List<string> { "CookedFish", "Lettuce", "DeepFriedFish", "Quiche" };
 
             public Reminiscing() : base(
@@ -713,10 +652,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -742,7 +677,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_REMINISCING2";
             public const float x = 4f;
             public const float Duration = 600f;
-            public const string description = "Increases Science by 4";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_REMINISCING2.TOOLTIP;
             public static readonly List<string> food = new List<string> { "BerryPie", "Salsa", "SurfAndTurf", "DeepFriedShellfish" };
 
             public Reminiscing2() : base(
@@ -753,10 +688,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -782,7 +713,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_BULKING";
             public const float x = 2f;
             public const float Duration = 600f;
-            public const string description = "It takes a certain type of Duplicant to eat this";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_BULKING.TOOLTIP;
             public static readonly List<string> food = new List<string> { "CookedPikeapple" };
 
             public Bulking() : base(
@@ -793,10 +724,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -822,7 +749,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_BULKING2";
             public const float x = 5f;
             public const float Duration = 600f;
-            public const string description = "This Duplicant could lift a shovevole with one hand!";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_BULKING2.TOOLTIP;
             public static readonly List<string> food = new List<string> { "SpicyTofu", "SpiceBread" };
 
             public Bulking2() : base(
@@ -833,10 +760,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -862,7 +785,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_GREASY";
             public const float x = 3f;
             public const float Duration = 600f;
-            public const string description = "The oily Taste of Industry";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_GREASY.TOOLTIP;
             public static readonly List<string> food = new List<string> { "FriesCarrot", "DeepFriedNosh", "SmokedFish", "DeepFriedFish" };
 
             public Greasy() : base(
@@ -873,10 +796,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -902,7 +821,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_BADFOOD";
             public const float x = 2f;
             public const float Duration = 600f;
-            public const string description = "This Duplicant wants to eat anything else";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_BADFOOD.TOOLTIP;
             public static readonly List<string> food = new List<string> { "MushBar", "FriedMushBar" };
 
             public BadFood() : base(
@@ -913,10 +832,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -942,7 +857,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_INSPIRING";
             public const float x = 3f;
             public const float Duration = 600f;
-            public const string description = "This Duplicant wants to reshape the whole Planetoid";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_INSPIRING.TOOLTIP;
             public static readonly List<string> food = new List<string> { "SpiceBread" };
 
             public Inspiring() : base(
@@ -953,10 +868,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -983,7 +894,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_STIMULATED";
             public const float x = 3f;
             public const float Duration = 600f;
-            public const string description = "This Duplicant is giving it their all";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_STIMULATED.TOOLTIP;
             public static readonly List<string> food = new List<string> { "Salsa" };
 
             public Stimulated() : base(
@@ -994,10 +905,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -1024,7 +931,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_THEBIGONE";
             public const float x = 2f;
             public const float Duration = 600f;
-            public const string description = "Nutritional overdrive";
+            public static string description = STRINGS.DUPLICANTS.MODIFIERS.FE_THEBIGONE.TOOLTIP;
             public static readonly List<string> food = new List<string> { "Burger" };
 
             public TheBigOne() : base(
@@ -1035,10 +942,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -1064,7 +967,7 @@ namespace FoodOverhaul.Effects
             public const string ID = "FE_Effect_Sample";
             public const float x = 1;
             public const float Duration = 600f;
-            public const string description = "";
+            public static string description = "";
             public static readonly List<string> food = new List<string> { "FieldRation" };
 
             public Range() : base(
@@ -1075,10 +978,6 @@ namespace FoodOverhaul.Effects
                 food)
             {
                 List<string> effects = new List<string> { ID };
-
-                var attributes = Db.Get().Attributes;
-
-                var effectDb = Db.Get().effects;
 
                 var effect = effectDb.TryGet(ID);
 
@@ -1103,7 +1002,6 @@ namespace FoodOverhaul.Effects
         public static List<AttributeModifier> AllAttributesUp(float increase)
         {
 
-            var attributes = Db.Get().Attributes;
             List<AttributeModifier> AllAttributes = new List<AttributeModifier>();
             List<string> MainAttributes = new List<string>
             {

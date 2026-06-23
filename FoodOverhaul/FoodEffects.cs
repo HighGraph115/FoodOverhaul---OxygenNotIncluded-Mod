@@ -65,13 +65,11 @@ namespace FoodOverhaul
                 }
                 else
                 {
-                    // Add basegame food effects here, if new ones are added
+                    // Add basegame food effects here to remove them, if new ones are added
                     var oEffects = new List<string>
                         {
-                            "SeafoodRadiationResistance",
                             "WarmTouchFood",
                             "GoodEats",
-                            "Thirsty"
                         };
 
                     // Remove all old Effects from Food
@@ -80,15 +78,7 @@ namespace FoodOverhaul
                         foodInfo.Effects.RemoveAll(e => oEffects.Contains(e));
                     }
                 }
-
-                // Add new effects without duplicates
-                foreach (var y in effects)
-                {
-                    if (!foodInfo.Effects.Contains(y))
-                    {
-                        foodInfo.Effects.Add(y);
-                    }
-                }
+                foodInfo.AddEffects(effects);
             }
         }
     }

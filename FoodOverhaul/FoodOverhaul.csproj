@@ -64,6 +64,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Compatibility\DupesCuisine.cs" />
+    <Compile Include="Compatibility\ModCheck.cs" />
     <Compile Include="Configs\NoCO2Config.cs" />
     <Compile Include="Configs\SpeedConfig.cs" />
     <Compile Include="Effects\FEffects.cs" />
